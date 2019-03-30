@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>学院图书资料管理系统</title>
+
+	<!--默认样式-->
+	<link rel="stylesheet" type="text/css" href="../static/index/css/reset.css" />
+
+	<!--响应式框架-->
+	<link rel="stylesheet" type="text/css" href="../static/index/css/bootstrap.css">
+
+	<!--主要样式-->
+	<link rel="stylesheet" href="../static/index/css/head.css" />
+
+</head>
+<body>
+	<!-- 导航 -->
+	<header class="header">
+		<div class="container clearfix">
+			<div class="fl left">
+				<!--<a href="javascript:void(0)" ><img src="../static/index/image/timg1.jpg" alt="" class="img1" /></a>
+				<a href="javascript:void(0)" ><img src="../static/index/image/timg1.jpg" alt="" class="img2" /></a>-->
+			</div>
+			<div class="fr nav">
+				<ul class="navbar_nav" data-in="fadeInDown" data-out="fadeOutUp">
+					<li class="active">
+						<a href="javascript:void(0)">首页</a>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:void(0)">
+							图书资料库
+						</a>
+						<div class="dropdown_menu">
+							<a href="#" onclick="addBook()">入库</a>
+							<a href="#">借出</a>
+							<a href="#">还入</a>
+						</div>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:void(0)">查询预约</a>
+						<div class="dropdown_menu">
+							<a href="#">查询</a>
+							<a href="#">预约</a>
+						</div>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:void(0)">统计清单</a>
+						<div class="dropdown_menu">
+							<a href="#">每周</a>
+							<a href="#">每月</a>
+							<a href="#">每季</a>
+						</div>
+					</li>
+					<li>
+						<a href="javascript:void(0)">年度排行榜</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">更多功能</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">联系合作</a>
+					</li>
+				</ul>
+			</div>
+			<a href="javascript:void(0)" id="navToggle">
+	            <span></span>
+	        </a>
+		</div>
+		<div class="conotainer-fluid">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="list-group">
+						<a href="#" class="list-group-item active">书籍管理系统</a>
+						<a href="addca.jsp" target="et" class="list-group-item">添加类别</a>
+						<a href="addbook.jsp" target="et" class="list-group-item">添加书籍</a>
+						<a href="booklist.jsp" target="et" class="list-group-item">书籍列表</a>
+						<a href="addper.jsp" target="et" class="list-group-item">添加读者</a>
+						<a href="perlist.jsp" target="et" class="list-group-item">读者信息列表</a>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<iframe frameborder="0" height="1000px" width="100%" src="welcome.jsp" name="et"></iframe>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--移动端的导航-->
+	<div class="m_nav">
+		<div class="top clearfix">
+			<img src="../static/index/image/closed.png" alt="" class="closed" />
+		</div>
+		<div class="logo">
+			<img src="../static/index/image/logo2.jpg" alt="" />
+		</div>
+		<ul class="ul" data-in="fadeInDown" data-out="fadeOutUp">
+			<li class="active">
+				<a href="javascript:void(0)">首页</a>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)">
+					业务体系
+				</a>
+				<div class="dropdown_menu">
+					<a href="#">二级菜单</a>
+					<a href="#">二级菜单</a>
+					<a href="#">二级菜单</a>
+				</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)">直营园</a>
+				<div class="dropdown_menu">
+					<a href="#">二级菜单</a>
+					<a href="#">二级菜单</a>
+					<a href="#">二级菜单</a>
+				</div>
+			</li>
+			<li>
+				<a href="javascript:void(0)">行知资讯</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">关于我们</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">联系合作</a>
+			</li>
+		</ul>
+	</div>
+	<div class="banner">
+		<img src="../static/index/image/timg2.jpg">
+	</div>
+	<!--<div class="box" style="height: 1000px;">
+		<h3 style="text-align: center; color: aliceblue">调整浏览器宽度大小查看效果</h3>
+	</div>-->
+
+	<script src="../static/index/js/jquery.min.js"></script>
+	<script src="../static/js/my/Book.js"></script>
+	<script>
+		$(function(){
+			//超过一定高度导航添加类名
+			var nav=$("header"); //得到导航对象
+			var win=$(window); //得到窗口对象
+			var sc=$(document);//得到document文档对象。
+			win.scroll(function(){
+			  if(sc.scrollTop()>=100){
+			    nav.addClass("on");
+			  }else{
+			   nav.removeClass("on");
+			  }
+			})
+
+			//移动端展开nav
+			$('#navToggle').on('click',function(){
+				$('.m_nav').addClass('open');
+			})
+			//关闭nav
+			$('.m_nav .top .closed').on('click',function(){
+				$('.m_nav').removeClass('open');
+			})
+
+			//二级导航  移动端
+		    $(".m_nav .ul li").click(function() {
+				$(this).children("div.dropdown_menu").slideToggle('slow')
+		        $(this).siblings('li').children('.dropdown_menu').slideUp('slow');
+		    });
+
+		})
+	</script>
+
+</body>
+</html>
